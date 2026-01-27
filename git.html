@@ -3,11 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>My App</title>
+  <style>
+    #chat {
+      border: 1px solid #ccc;
+      height: 300px;
+      overflow-y: scroll;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    #message {
+      width: 80%;
+      padding: 5px;
+    }
+    button {
+      padding: 5px 10px;
+    }
+  </style>
 </head>
 <body>
 
   <h1>Welcome</h1>
   <p>This is my index page.</p>
+
+  <div id="chat"></div>
+  <input type="text" id="message" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    function sendMessage() {
+      const messageInput = document.getElementById('message');
+      const chat = document.getElementById('chat');
+      const message = messageInput.value;
+      if (message.trim() !== '') {
+        const messageElement = document.createElement('p');
+        messageElement.textContent = 'You: ' + message;
+        chat.appendChild(messageElement);
+        messageInput.value = '';
+        chat.scrollTop = chat.scrollHeight;
+      }
+    }
+  </script>
 
 </body>
 </html>
